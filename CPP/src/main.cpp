@@ -7,7 +7,7 @@ void testUser()
 {
     // Code to test the User class
     cout << "Testing User class...\n";
-    // ... your testing code here ...
+
     // Create a User object
     User user1(1, "Shreyas Aswal", "shreyasaswal@example.com", "hashed_password123");
 
@@ -46,10 +46,12 @@ void testBoard()
     myBoard.addCollaborator(4);
 
     std::cout << "\nCollaborators: ";
+    // std::vector<int> collaborators = myBoard.getCollaborators();
     for (int id : myBoard.getCollaborators())
     {
         std::cout << id << " ";
     }
+
     std::cout << std::endl;
 
     // Remove a collaborator
