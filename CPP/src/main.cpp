@@ -1,5 +1,7 @@
 #include "../include/models/User.h"
 #include "../include/models/Board.h"
+#include "../include/models/List.h"
+#include "../include/models/Card.h"
 #include <iostream>
 using namespace std;
 
@@ -65,6 +67,65 @@ void testBoard()
     std::cout << std::endl;
 }
 
+void testLists()
+{
+    List myList("ToDo", 1);
+
+    std::cout << "List ID: " << myList.getListID() << std::endl;
+    std::cout << "List Title: " << myList.getTitle() << std::endl;
+
+    Card card1("Card 1", 1, "This is the description for Card 1", "2023-09-25");
+    Card card2("Card 2", 3, "Description for Card 2", "2023-10-01");
+
+    myList.addCard(card1);
+    myList.addCard(card2);
+
+    std::cout << "Cards in the list:" << std::endl;
+    for (const Card &card : myList.getCards())
+    {
+        std::cout << "Card ID: " << card.getCardID()
+                  << ", Title: " << card.getTitle()
+                  << ", Description: " << card.getDescription()
+                  << ", Due Date: " << card.getDueDate() << std::endl;
+    }
+
+    myList.removeCard(card1.getCardID());
+    std::cout << "After removing Card 1:" << std::endl;
+    for (const Card &card : myList.getCards())
+    {
+        std::cout << "Card ID: " << card.getCardID()
+                  << ", Title: " << card.getTitle() << std::endl;
+    }
+}
+
+void testCard()
+{
+    std::cout << "Testing Card class...\n";
+
+    // Create a Card object
+    Card card1("Sample Card", 1, "This is a sample description", "2023-09-30");
+
+    // Print card details using getters
+    cout << "Card ID: " << card1.getCardID() << endl;
+    cout << "Title: " << card1.getTitle() << endl;
+    cout << "Description: " << card1.getDescription() << endl;
+    cout << "Due Date: " << card1.getDueDate() << endl;
+    cout << "List ID: " << card1.getListID() << endl;
+
+    // Modify card details using setters
+    card1.setTitle("Modified Card Title");
+    card1.setDescription("Updated description for this card.");
+    card1.setDueDate("2023-10-15");
+    card1.setListID(2);
+
+    // Print modified card details
+    cout << "\nModified Card Details:" << endl;
+    cout << "Title: " << card1.getTitle() << endl;
+    cout << "Description: " << card1.getDescription() << endl;
+    cout << "Due Date: " << card1.getDueDate() << endl;
+    cout << "List ID: " << card1.getListID() << endl;
+}
+
 int main()
 {
     int choice;
@@ -74,7 +135,9 @@ int main()
         std::cout << "Choose an option:\n";
         std::cout << "1. Test User class\n";
         std::cout << "2. Test Board class\n";
-        std::cout << "3. Exit\n";
+        std::cout << "3. Test List class\n";
+        std::cout << "4. Test Card class\n";
+        std::cout << "5. Exit\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
 
@@ -87,6 +150,12 @@ int main()
             testBoard();
             break;
         case 3:
+            testLists();
+            break;
+        case 4:
+            testCard();
+            break;
+        case 5:
             return 0;
             break;
         default:
