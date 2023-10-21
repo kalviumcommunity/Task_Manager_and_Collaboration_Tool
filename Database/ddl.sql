@@ -86,7 +86,7 @@ CREATE TABLE
     );
 
 -- SELECT * FROM Lists;
-
+ 
 -- Create the Cards table
 
 CREATE TABLE
