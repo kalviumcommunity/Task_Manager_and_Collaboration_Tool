@@ -14,7 +14,7 @@ CREATE TABLE
         password_hash VARCHAR(255) NOT NULL
     );
 
--- SELECT * FROM Users;
+SELECT * FROM Users;
 
 -- Create the Roles table
 
