@@ -5,7 +5,7 @@
 
 class Board {
 private:
-    static int next_board_id;  // This will keep track of the next available ID
+    static int next_board_id;  // This will keep track of the next available ID (Static Element)
     int board_id;
     std::string board_name;
     std::string board_description;

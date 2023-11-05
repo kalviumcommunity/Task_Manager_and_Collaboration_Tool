@@ -4,6 +4,7 @@ using namespace std;
 
 int Board::next_board_id = 1;  // Initialize the static member variable
 
+//Assign the next_board_id variable to the board_id value and auto-increment
 Board::Board(const std::string &name, const std::string &description, bool collaborative, int owner)
     : board_id(next_board_id++), board_name(name), board_description(description), is_collaborative(collaborative), owner_id(owner) {}
 
