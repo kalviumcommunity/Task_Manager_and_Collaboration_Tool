@@ -65,7 +65,7 @@ CREATE TABLE
         FOREIGN KEY (board_id) REFERENCES Boards(board_id)
     );
 
--- SELECT * FROM Collaborators;
+SELECT * FROM Collaborators;
 
 ALTER TABLE Collaborators
 ADD COLUMN role_id INT,

@@ -6,11 +6,11 @@ SHOW TABLES;
 
 
 INSERT INTO Users (user_name, email, password_hash)
-VALUES
-    ('First User', 'firstuser@example.com', 'hashed_password1'),  /* First User */
+VALUES 
+    ('First User', 'firstuser@example.com', 'hashed_password1'),
     ('Dwayne Rock', 'therock_email@example.com', 'hashed_password2'),
     ('John Doe', 'johndoe@example.com', 'hashed_password3'),
-    ('Alice Smith', 'alicesmith@example.com', 'hashed_password4'),
+    ('Alice Smith', 'alicesmith@example.com', 'hashed_password4');
 
 
 SELECT * FROM Users;
@@ -36,6 +36,7 @@ VALUES (
         1,
         1
     );
+
 
 SELECT * FROM lists;
 
@@ -122,11 +123,9 @@ VALUES (
     );
 
 
--- Assign predefined tasks to users
-
--- Assign Task 1 to user_id 1
-
 -- Collaborator 1: Manager for Board 1
+
+SELECT * FROM collaborators;
 
 INSERT INTO
     Collaborators (board_id, user_id, role_id)
@@ -148,16 +147,14 @@ VALUES (1, 3, 3);
 
 INSERT INTO
     Collaborators (board_id, user_id, role_id)
-
 VALUES (1, 4, 2);
 
 -- Delete collaborator rows with collaborator_id between 1 and 2
 
-DELETE FROM Collaborators WHERE collaborator_id BETWEEN 1 AND 4;
+DELETE FROM Collaborators WHERE collaborator_id = 10;
 
-ALTER TABLE Collaborators AUTO_INCREMENT = 1;
+ALTER TABLE Collaborators AUTO_INCREMENT = 5;
 
-SELECT * FROM collaborators;
 
 SELECT * FROM Comments;
 
@@ -177,6 +174,10 @@ VALUES (
         'You have a new notification.',
         1
     );
+
+
+
+
 
 
 
