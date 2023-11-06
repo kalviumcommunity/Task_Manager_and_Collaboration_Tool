@@ -12,6 +12,9 @@ private:
     std::string password_hash;
 
 public:
+    // Default Constructor
+    User();
+
     // Constructor
     User(int id, const std::string &name, const std::string &email, const std::string &hash);
 

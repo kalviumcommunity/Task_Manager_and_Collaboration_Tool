@@ -2,15 +2,30 @@
 #include "../include/models/Board.h"
 #include "../include/models/List.h"
 #include "../include/models/Card.h"
+#include "../include/models/Comment.h"
 #include <iostream>
 using namespace std;
 
+
+const int MAX_USERS = 10;
+User allUsers[MAX_USERS];
+int userCount = 0; // Global counter for the number of users
+
+
+void addUserToArray(const User& user) {
+    if (userCount < MAX_USERS) {
+        allUsers[userCount] = user;
+        userCount++;
+    } else {
+        cout << "Maximum user limit reached. Cannot add more users." << endl;
+    }
+}
+
 void testUser()
 {
-    // Code to test the User class
     cout << "Testing User class...\n";
 
-    // Create a User object
+    // Create a single User object
     User user1(1, "Shreyas Aswal", "shreyasaswal@example.com", "hashed_password123");
 
     // Print user details using getters
@@ -28,8 +43,30 @@ void testUser()
     cout << "User Name: " << user1.getUserName() << endl;
     cout << "Email: " << user1.getEmail() << endl;
 
-    // return 0;
+    // Demonstrating an array of User objects
+    cout << "\nTesting Array of Users:\n";
+
+    addUserToArray(user1);
+
+    // Create and add more User objects
+    User user2(2, "Alice Johnson", "alice@example.com", "password1234");
+    addUserToArray(user2);
+
+    User user3(3, "Bob Smith", "bob@example.com", "password5678");
+    addUserToArray(user3);
+
+    User user4(4, "Charlie Brown", "charlie@example.com", "password91011");
+    addUserToArray(user4);
+
+    // Display users from the array
+    for (int i = 0; i < userCount; ++i) {
+        cout << "User ID: " << allUsers[i].getUserID() << "\n"
+             << "User Name: " << allUsers[i].getUserName() << "\n"
+             << "User Email: " << allUsers[i].getEmail() << "\n\n";
+    }
+    cout<<"userCount :"<< userCount<<endl;
 }
+
 
 void testBoard()
 {
@@ -126,6 +163,40 @@ void testCard()
     cout << "List ID: " << card1.getListID() << endl;
 }
 
+void testComment()
+{
+    // Create a new comment
+    Comment myComment(1, 1, "This is a test comment.");
+
+    cout << "Comment ID: " << myComment.getCommentID() << endl;
+    cout << "Card ID associated with comment: " << myComment.getCardID() << endl;
+    cout << "User ID associated with comment: " << myComment.getUserID() << endl;
+    cout << "Content: " << myComment.getContent() << endl;
+
+    // Display timestamp
+    // char *dt = ctime(myComment.getTimestamp());
+    time_t commentTimestamp = myComment.getTimestamp();
+    char *dt = ctime(&commentTimestamp);
+
+    cout << "Timestamp: " << dt << endl;
+
+    // Update the comment content
+    myComment.setContent("Updated content for the test comment.");
+    cout << "\nAfter updating content:\n";
+    cout << "Content: " << myComment.getContent() << endl;
+
+    // Create another comment to test the copy constructor
+    Comment copiedComment = myComment;
+    cout << "\nCopied Comment Details:\n";
+    cout << "Comment ID: " << copiedComment.getCommentID() << endl;
+    cout << "Content: " << copiedComment.getContent() << endl;
+    // dt = ctime(copiedComment.getTimestamp());
+    time_t copiedTimestamp = copiedComment.getTimestamp();
+    dt = ctime(&copiedTimestamp);
+
+    cout << "Timestamp: " << dt << endl;
+}
+
 int main()
 {
     int choice;
@@ -137,7 +208,8 @@ int main()
         std::cout << "2. Test Board class\n";
         std::cout << "3. Test List class\n";
         std::cout << "4. Test Card class\n";
-        std::cout << "5. Exit\n";
+        std::cout << "5. Test Comment class\n";
+        std::cout << "6. Exit\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
 
@@ -156,12 +228,14 @@ int main()
             testCard();
             break;
         case 5:
+            testComment();
+            break;
+        case 6:
             return 0;
             break;
         default:
             std::cout << "Invalid choice. Please try again.\n";
         }
     }
-
     return 0;
 }

@@ -1,6 +1,10 @@
 #include "../../include/models/User.h"
 using namespace std;
 
+//Default Constructor
+User::User()
+    : user_id(0), user_name(""), email(""), password_hash("") {}
+
 // Constructor
 User::User(int id, const string &name, const string &email, const string &passwordHash)
     : user_id(id), user_name(name), email(email), password_hash(passwordHash) {}
