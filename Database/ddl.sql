@@ -14,7 +14,7 @@ CREATE TABLE
         password_hash VARCHAR(255) NOT NULL
     );
 
--- SELECT * FROM Users;
+SELECT * FROM Users;
 
 -- Create the Roles table
 
@@ -65,7 +65,7 @@ CREATE TABLE
         FOREIGN KEY (board_id) REFERENCES Boards(board_id)
     );
 
--- SELECT * FROM Collaborators;
+SELECT * FROM Collaborators;
 
 ALTER TABLE Collaborators
 ADD COLUMN role_id INT,
