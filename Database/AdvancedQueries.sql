@@ -1,3 +1,4 @@
+
 USE task_manager_and_collaboration_tool;
 
 SHOW TABLES;
@@ -22,3 +23,13 @@ SELECT
     (SELECT COUNT(*) FROM Cards WHERE Cards.list_id = Lists.list_id) AS NumberOfCards 
 FROM 
     Lists;
+
+
+
+
+
+-- Query to Find Overdue Tasks
+SELECT Cards.title, Cards.due_date
+FROM Cards
+JOIN Lists ON Cards.list_id = Lists.list_id
+WHERE Lists.board_id = 1 AND Cards.due_date < CURDATE();
