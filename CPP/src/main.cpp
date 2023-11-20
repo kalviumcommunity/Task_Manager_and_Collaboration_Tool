@@ -3,6 +3,10 @@
 #include "../include/models/List.h"
 #include "../include/models/Card.h"
 #include "../include/models/Comment.h"
+#include "../include/models/Roles/Role.h"
+#include "../include/models/Roles/ManagerRole.h"
+#include "../include/models/Roles/MemberRole.h"
+#include "../include/models/Roles/ViewerRole.h"
 #include <iostream>
 using namespace std;
 
@@ -197,6 +201,50 @@ void testComment()
     cout << "Timestamp: " << dt << endl;
 }
 
+void testRoles() {
+    cout << "Testing Roles...\n";
+
+    // Create a ManagerRole object
+    ManagerRole manager("Manager", "Manages team and tasks");
+
+    // Print role details using getters
+    cout << "Role ID: " << manager.getRoleID() << endl;
+    cout << "Role Name: " << manager.getRoleName() << endl;
+    cout << "Description: " << manager.getDescription() << endl;
+
+    // Check permissions
+    cout << "Has permission to CREATE_CARD: " 
+         << (manager.hasPermission("CREATE_CARD") ? "Yes" : "No") << endl;
+    cout << "Has permission to DELETE_CARD: " 
+         << (manager.hasPermission("DELETE_BOARD") ? "Yes" : "No") << endl;
+
+
+     // Member Role
+    MemberRole member("Member", "Team member with standard permissions");
+    cout << "\nMember Role Details:\n";
+    cout << "Role ID: " << member.getRoleID() << endl;
+    cout << "Role Name: " << member.getRoleName() << endl;
+    cout << "Description: " << member.getDescription() << endl;
+    cout << "Has permission to EDIT_CARD: " 
+         << (member.hasPermission("EDIT_CARD") ? "Yes" : "No") << endl;
+    cout << "Has permission to EDIT_LIST: " 
+         << (member.hasPermission("EDIT_LIST") ? "Yes" : "No") << endl;
+
+    
+       // Viewer Role
+    ViewerRole viewer("Viewer", "Can only view cards, lists, and boards");
+    cout << "\nViewer Role Details:\n";
+    cout << "Role ID: " << viewer.getRoleID() << endl;
+    cout << "Role Name: " << viewer.getRoleName() << endl;
+    cout << "Description: " << viewer.getDescription() << endl;
+    cout << "Has permission to VIEW_BOARD: " 
+         << (viewer.hasPermission("VIEW_BOARD") ? "Yes" : "No") << endl;
+    cout << "Has permission to EDIT_CARD: " 
+         << (viewer.hasPermission("EDIT_CARD") ? "Yes" : "No") << endl;
+
+}
+
+
 int main()
 {
     int choice;
@@ -209,7 +257,8 @@ int main()
         std::cout << "3. Test List class\n";
         std::cout << "4. Test Card class\n";
         std::cout << "5. Test Comment class\n";
-        std::cout << "6. Exit\n";
+        std::cout << "6. Test Roles class\n";
+        std::cout << "7. Exit\n";
         std::cout << "Enter your choice: ";
         std::cin >> choice;
 
@@ -231,6 +280,9 @@ int main()
             testComment();
             break;
         case 6:
+            testRoles();
+            break;
+        case 7:
             return 0;
             break;
         default:
