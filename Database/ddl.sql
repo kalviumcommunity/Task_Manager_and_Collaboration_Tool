@@ -4,6 +4,9 @@ USE task_manager_and_collaboration_tool;
 
 SHOW TABLES;
 
+-- //Create, Drop, Alter --> DDL Commands 
+
+
 -- Create the Users table
 
 CREATE TABLE
